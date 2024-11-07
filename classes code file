@@ -1,0 +1,232 @@
+# EBook class representing a digital book
+class EBook:
+    def __init__(self, title, author, publication_date, genre, price):
+        # Initializing private attributes for title, author, publication date, genre, and price
+        self._title = title
+        self._author = author
+        self._publication_date = publication_date
+        self._genre = genre
+        self._price = price
+
+    # Getters
+    def get_title(self):
+        # Returns the title of the eBook
+        return self._title
+
+    def get_author(self):
+        # Returns the author of the eBook
+        return self._author
+
+    def get_publication_date(self):
+        # Returns the publication date of the eBook
+        return self._publication_date
+
+    def get_genre(self):
+        # Returns the genre of the eBook
+        return self._genre
+
+    def get_price(self):
+        # Returns the price of the eBook
+        return self._price
+
+    # Setters
+    def set_title(self, title):
+        # Sets the title of the eBook
+        self._title = title
+
+    def set_author(self, author):
+        # Sets the author of the eBook
+        self._author = author
+
+    def set_publication_date(self, publication_date):
+        # Sets the publication date of the eBook
+        self._publication_date = publication_date
+
+    def set_genre(self, genre):
+        # Sets the genre of the eBook
+        self._genre = genre
+
+    def set_price(self, price):
+        # Sets the price of the eBook
+        self._price = price
+
+
+# Customer class representing a customer in the system
+class Customer:
+    def __init__(self, name, contact_information, loyalty_member, customer_id):
+        # Initializing private attributes for name, contact information, loyalty status, and customer ID
+        self._name = name
+        self._contact_information = contact_information
+        self._loyalty_member = loyalty_member
+        self._customer_id = customer_id
+
+    # Getters
+    def get_name(self):
+        # Returns the name of the customer
+        return self._name
+
+    def get_contact_information(self):
+        # Returns the contact information of the customer
+        return self._contact_information
+
+    def get_loyalty_member(self):
+        # Returns the loyalty member status of the customer
+        return self._loyalty_member
+
+    def get_customer_id(self):
+        # Returns the customer ID
+        return self._customer_id
+
+    # Setters
+    def set_name(self, name):
+        # Sets the name of the customer
+        self._name = name
+
+    def set_contact_information(self, contact_information):
+        # Sets the contact information of the customer
+        self._contact_information = contact_information
+
+    def set_loyalty_member(self, loyalty_member):
+        # Sets the loyalty member status of the customer
+        self._loyalty_member = loyalty_member
+
+    def set_customer_id(self, customer_id):
+        # Sets the customer ID
+        self._customer_id = customer_id
+
+
+# Order class representing an order placed by a customer
+class Order:
+    def __init__(self, order_id, order_date, total_price, discount_applied):
+        # Initializing private attributes for order ID, date, total price, and discount applied
+        self._order_id = order_id
+        self._order_date = order_date
+        self._total_price = total_price
+        self._discount_applied = discount_applied
+
+    # Getters
+    def get_order_id(self):
+        # Returns the order ID
+        return self._order_id
+
+    def get_order_date(self):
+        # Returns the order date
+        return self._order_date
+
+    def get_total_price(self):
+        # Returns the total price of the order
+        return self._total_price
+
+    def get_discount_applied(self):
+        # Returns the discount applied on the order
+        return self._discount_applied
+
+    # Setters
+    def set_order_id(self, order_id):
+        # Sets the order ID
+        self._order_id = order_id
+
+    def set_order_date(self, order_date):
+        # Sets the order date
+        self._order_date = order_date
+
+    def set_total_price(self, total_price):
+        # Sets the total price of the order
+        self._total_price = total_price
+
+    def set_discount_applied(self, discount_applied):
+        # Sets the discount applied on the order
+        self._discount_applied = discount_applied
+
+
+# ShoppingCart class representing a customer's shopping cart
+class ShoppingCart:
+    def __init__(self, customer, cart_id):
+        # Initializing private attributes for customer, cart ID, and an empty list of cart items
+        self._customer = customer
+        self._cart_id = cart_id
+        self._cart_items = []
+
+    # Getters
+    def get_customer(self):
+        # Returns the customer associated with the shopping cart
+        return self._customer
+
+    def get_cart_id(self):
+        # Returns the cart ID
+        return self._cart_id
+
+    def get_cart_items(self):
+        # Returns the list of items in the shopping cart
+        return self._cart_items
+
+    # Setters
+    def set_customer(self, customer):
+        # Sets the customer for the shopping cart
+        self._customer = customer
+
+    def set_cart_id(self, cart_id):
+        # Sets the cart ID
+        self._cart_id = cart_id
+
+    def add_item(self, ebook):
+        # Adds an eBook item to the cart
+        self._cart_items.append(ebook)
+
+
+# Invoice class representing an invoice for an order
+class Invoice:
+    def __init__(self, subtotal, tax, discount_applied):
+        # Initializing private attributes for subtotal, tax, discount applied, and calculated totals
+        self._subtotal = subtotal
+        self._tax = tax
+        self._discount_applied = discount_applied
+        self._after_discount = self.calculate_after_discount()
+        self._final_total = self.calculate_final_total()
+
+    # Getters
+    def get_subtotal(self):
+        # Returns the subtotal amount
+        return self._subtotal
+
+    def get_tax(self):
+        # Returns the tax amount
+        return self._tax
+
+    def get_discount_applied(self):
+        # Returns the discount applied on the invoice
+        return self._discount_applied
+
+    def get_after_discount(self):
+        # Returns the amount after discount is applied
+        return self._after_discount
+
+    def get_final_total(self):
+        # Returns the final total after discount and tax
+        return self._final_total
+
+    # Setters
+    def set_subtotal(self, subtotal):
+        # Sets the subtotal and updates after discount and final total calculations
+        self._subtotal = subtotal
+        self._after_discount = self.calculate_after_discount()
+        self._final_total = self.calculate_final_total()
+
+    def set_tax(self, tax):
+        # Sets the tax amount and updates the final total calculation
+        self._tax = tax
+        self._final_total = self.calculate_final_total()
+
+    def set_discount_applied(self, discount_applied):
+        # Sets the discount amount and updates after discount and final total calculations
+        self._discount_applied = discount_applied
+        self._after_discount = self.calculate_after_discount()
+        self._final_total = self.calculate_final_total()
+
+    # Method to calculate price after discount is applied
+    def calculate_after_discount(self):
+        return self._subtotal - self._discount_applied
+
+    # Method to calculate final total, which is after discount plus tax
+    def calculate_final_total(self):
+        return self.calculate_after_discount() + self._tax
