@@ -1,0 +1,87 @@
+from three import EBook, ShoppingCart, Customer, Order, Invoice
+
+# Function to display invoice details for a given customer, order, invoice, and list of eBooks
+def display_invoice(customer, order, invoice, ebooks):
+    print("---------------------------------------------------------------")
+    # Display customer information
+    print("Customer Information")
+    print(f"Name: {customer.get_name()}")
+    print(f"Contact Information: {customer.get_contact_information()}")
+    print(f"Customer ID: {customer.get_customer_id()}")
+    print(f"Loyalty Member: {'yes' if customer.get_loyalty_member() else 'no'}\n")
+
+    # Display eBook details for each item in the order
+    print("EBook Information")
+    for ebook in ebooks:
+        print(f"Title: {ebook.get_title()}")
+        print(f"Author: {ebook.get_author()}")
+        print(f"Publication Date: {ebook.get_publication_date()}")
+        print(f"Genre: {ebook.get_genre()}")
+        print(f"Price: {ebook.get_price()} AED\n")
+
+    # Display order details
+    print("Order")
+    print(f"Order ID: {order.get_order_id()}")
+    print(f"Order Date: {order.get_order_date()}")
+    print(f"Total Price: {order.get_total_price()} AED")
+    print(f"Discount Applied: {order.get_discount_applied()} AED\n")
+
+    # Display invoice summary including subtotal, after-discount amount, tax, and final total
+    print("Invoice")
+    print(f"Subtotal: {invoice.get_subtotal()} AED")
+    print(f"After Discount: {invoice.get_after_discount()} AED")
+    print(f"Taxes: {invoice.get_tax()} AED")
+    print(f"Final Total: {invoice.get_final_total()} AED")
+    print("---------------------------------------------------------------")
+
+# Create sample eBooks with title, author, publication date, genre, and price
+ebook1 = EBook("Python Master", "Dr. Afshan", "2024-05-02", "Programming", 50)
+ebook2 = EBook("Advanced for kids", "Dr. John", "2023-08-12", "Programming", 60)
+ebook3 = EBook("Utilitairnism", "John Mill", "2023-07-15", "Ethical thory", 55)
+ebook4 = EBook("One Piece", "Echiro Oda", "2024-01-01", "Manga", 65)
+ebook5 = EBook("Naruto", "Kishimoto", "2023-12-10", "Manga", 70)
+
+# Create customers with name, contact info, loyalty status, and customer ID
+customer1 = Customer("Ali Al Mansoori", "ali@gmail, Phone: 0501234567", True, "customer 001")
+customer2 = Customer("Fatima Al Farsi", "fatima@yahoo.com, Phone: 0557654321", False, "customer 002")
+customer3 = Customer("Mohammed Al Saadi", "mohammed@hotmail.com, Phone: 0548765432", True, "customer 003")
+customer4 = Customer("Sami Al Zahrani", "sami@gmail.com, Phone: 0509998888", True, "customer 004")
+
+# Create shopping carts for each customer and add items to the cart
+shopping_cart1 = ShoppingCart(customer1, "cart1")
+shopping_cart1.add_item(ebook1)
+
+shopping_cart2 = ShoppingCart(customer2, "cart2")
+shopping_cart2.add_item(ebook2)
+
+shopping_cart3 = ShoppingCart(customer3, "cart3")
+shopping_cart3.add_item(ebook1)
+shopping_cart3.add_item(ebook2)
+
+shopping_cart4 = ShoppingCart(customer4, "cart4")
+shopping_cart4.add_item(ebook1)
+shopping_cart4.add_item(ebook2)
+shopping_cart4.add_item(ebook3)
+shopping_cart4.add_item(ebook4)
+shopping_cart4.add_item(ebook5)
+
+# Apply bulk discount for orders with 5 or more books (set discount to 15 AED)
+bulk_discount = 15.0
+
+# Create orders with order ID, order date, total price, and discount applied
+order1 = Order("564738", "2024-11-02", 50, 5.0)
+order2 = Order("123456", "2024-11-05", 60, 0.0)
+order3 = Order("789012", "2024-11-06", 110, 10.0)
+order4 = Order("345678", "2024-11-07", 300, bulk_discount)
+
+# Create invoices with subtotal, tax amount, and discount applied for each order
+invoice1 = Invoice(50.0, 2.0, 5.0)
+invoice2 = Invoice(60.0, 3.0, 0.0)
+invoice3 = Invoice(110.0, 4.0, 10.0)
+invoice4 = Invoice(300.0, 12.0, bulk_discount)
+
+# Display invoices for each customer, showing detailed information for customer, order, and invoice
+display_invoice(customer1, order1, invoice1, [ebook1])
+display_invoice(customer2, order2, invoice2, [ebook2])
+display_invoice(customer3, order3, invoice3, [ebook1, ebook2])
+display_invoice(customer4, order4, invoice4, [ebook1, ebook2, ebook3, ebook4, ebook5])
